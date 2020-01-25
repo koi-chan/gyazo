@@ -10,11 +10,11 @@
   </thead>
 
   <tbody>
-    <% @api_v1_images.each do |api_v1_image| %>
+    <% @images.each do |image| %>
       <tr>
-        <td><%= link_to 'Show', api_v1_image %></td>
-        <td><%= link_to 'Edit', edit_api_v1_image_path(api_v1_image) %></td>
-        <td><%= link_to 'Destroy', api_v1_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', image %></td>
+        <td><%= link_to 'Edit', edit_image_path(image) %></td>
+        <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Api V1 Image', new_api_v1_image_path %>
+<%= link_to 'New Api V1 Image', new_image_path %>

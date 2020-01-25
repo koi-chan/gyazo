@@ -1,10 +1,10 @@
 class Api::V1::ImagesController < ApplicationController
-  before_action :set_api_v1_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   # GET /api/v1/images
   # GET /api/v1/images.json
   def index
-    @api_v1_images = Api::V1::Image.all
+    @images = Image.all
   end
 
   # GET /api/v1/images/1
@@ -14,7 +14,7 @@ class Api::V1::ImagesController < ApplicationController
 
   # GET /api/v1/images/new
   def new
-    @api_v1_image = Api::V1::Image.new
+    @image = Image.new
   end
 
   # GET /api/v1/images/1/edit
@@ -24,15 +24,15 @@ class Api::V1::ImagesController < ApplicationController
   # POST /api/v1/images
   # POST /api/v1/images.json
   def create
-    @api_v1_image = Api::V1::Image.new(api_v1_image_params)
+    @image = Image.new(image_params)
 
     respond_to do |format|
-      if @api_v1_image.save
-        format.html { redirect_to @api_v1_image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @api_v1_image }
+      if @image.save
+        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
-        format.json { render json: @api_v1_image.errors, status: :unprocessable_entity }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +41,12 @@ class Api::V1::ImagesController < ApplicationController
   # PATCH/PUT /api/v1/images/1.json
   def update
     respond_to do |format|
-      if @api_v1_image.update(api_v1_image_params)
-        format.html { redirect_to @api_v1_image, notice: 'Image was successfully updated.' }
-        format.json { render :show, status: :ok, location: @api_v1_image }
+      if @image.update(image_params)
+        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.json { render :show, status: :ok, location: @image }
       else
         format.html { render :edit }
-        format.json { render json: @api_v1_image.errors, status: :unprocessable_entity }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,21 +54,21 @@ class Api::V1::ImagesController < ApplicationController
   # DELETE /api/v1/images/1
   # DELETE /api/v1/images/1.json
   def destroy
-    @api_v1_image.destroy
+    @image.destroy
     respond_to do |format|
-      format.html { redirect_to api_v1_images_url, notice: 'Image was successfully destroyed.' }
+      format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_api_v1_image
-      @api_v1_image = Api::V1::Image.find(params[:id])
+    def set_image
+      @image = Image.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def api_v1_image_params
-      params.fetch(:api_v1_image, {})
+    def image_params
+      params.fetch(:image, {})
     end
 end
